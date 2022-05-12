@@ -25,6 +25,11 @@ class ControladorUsuarios{
 				if($respuesta["usua_login"] == $_POST["ingUsuario"] && $respuesta["usua_password"] == $_POST["ingPassword"]){
 
 					$_SESSION["iniciarSesion"] = "ok";
+					$_SESSION["id"] = $respuesta["usua_usuario"];
+					$_SESSION["nombre"] = $respuesta["usua_nombre"];
+					$_SESSION["usuario"] = $respuesta["usua_login"];
+					$_SESSION["foto"] = $respuesta["usua_foto"];"";
+					$_SESSION["perfil"] = $respuesta["usua_perfil"];
 
 					echo '<script>
 
