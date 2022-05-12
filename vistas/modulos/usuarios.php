@@ -31,23 +31,42 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>Usuario Administrador</td>
-              <td>admin</td>
-              <td>
-                <img src="vistas/img/usuarios/default/anonymous.png" class="img-thumbnail" width="40px">
-              </td>
-              <td>Administrador</td>
-              <td><button class="btn btn-success btn-xs">Activado</button></td>
-              <td>2022-05-07 10:00:00</td>
-              <td>
-                <div class="btn-group">
-                  <button class="btn btn-warning"><i class="fa fa-pencil"></i></button>
-                  <button class="btn btn-danger"><i class="fa fa-times"></i></button>
-                </div>
-              </td>
-            </tr>
+            <?php 
+              $item = null;
+              $valor = null;
+              $usuarios = ControladorUsuarios::ctrMostrarUsuarios($item, $valor);
+
+              foreach ($usuarios as $key => $value) {
+                echo '<tr>
+                        <td>1</td>
+                        <td>'.$value["usua_nombre"].'</td>
+                        <td>'.$value["usua_login"].'</td>';
+
+                        if($value["usua_foto"] != ""){
+                          echo '<td>
+                                  <img src="'.$value["usua_foto"].'" class="img-thumbnail" width="40px">
+                                </td>';
+                        }else{
+                          echo '<td>
+                                  <img src="vistas/img/usuarios/default/anonymous.png" class="img-thumbnail" width="40px">
+                                </td>';
+                        }
+
+                        echo '
+                        <td>'.$value["usua_perfil"].'</td>
+                        <td><button class="btn btn-success btn-xs">Activado</button></td>
+                        <td>'.$value["usua_ultimo_login"].'</td>
+                        <td>
+                          <div class="btn-group">
+                            <button class="btn btn-warning"><i class="fa fa-pencil"></i></button>
+                            <button class="btn btn-danger"><i class="fa fa-times"></i></button>
+                          </div>
+                        </td>
+                      </tr>';
+              }
+
+            ?>
+            
           </tbody>
         </table>
       </div>

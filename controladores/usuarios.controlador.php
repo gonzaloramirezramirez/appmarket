@@ -13,7 +13,7 @@ class ControladorUsuarios{
 			if(preg_match('/^[a-zA-Z0-9]+$/', $_POST["ingUsuario"]) &&
 			   preg_match('/^[a-zA-Z0-9]+$/', $_POST["ingPassword"])){
 
-			   	$encriptar = crypt($_POST["ingPassword"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+			   	$encriptar = crypt($_POST["ingPassword"], '$2a$07$usesomesillystringforsalt$');
 
 				$tabla = "adm_tusuario";
 
@@ -98,7 +98,7 @@ class ControladorUsuarios{
 					if($_FILES["nuevaFoto"]["type"] == "image/png"){
 
 						/*=============================================
-						Guardar imagen en el directorio
+						Guardar imagen en el directorio 
 						=============================================*/
 						$aleatorio = mt_rand(100,999);
 						$ruta = "vistas/img/usuarios/".$_POST["nuevoUsuario"]."/".$aleatorio.".png";
@@ -115,7 +115,7 @@ class ControladorUsuarios{
 
 				$tabla = "adm_tusuario";
 
-				$encriptar = crypt($_POST["nuevoContrasenia"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+				$encriptar = crypt($_POST["nuevoContrasenia"], '$2a$07$usesomesillystringforsalt$');
 
 				$datos = array('usua_nombre' => $_POST["nuevoNombre"], 
 						       'usua_login' => $_POST["nuevoUsuario"],
@@ -158,6 +158,17 @@ class ControladorUsuarios{
 					</script>';
 			}
 		}
+	}
+
+
+	/*=============================================
+	MOSTRAR USUARIOS
+	=============================================*/
+	public static function ctrMostrarUsuarios($item, $valor){
+		$tabla = "adm_tusuario";
+		$respuesta = ModeloUsuarios::MdlMostrarUsuarios($tabla, $item, $valor);
+
+		return $respuesta;
 	}
 
 }
