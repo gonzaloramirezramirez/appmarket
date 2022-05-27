@@ -24,18 +24,23 @@ class ControladorUsuarios{
 
 				if($respuesta["usua_login"] == $_POST["ingUsuario"] && $respuesta["usua_password"] == $encriptar){
 
-					$_SESSION["iniciarSesion"] = "ok";
-					$_SESSION["id"] = $respuesta["usua_usuario"];
-					$_SESSION["nombre"] = $respuesta["usua_nombre"];
-					$_SESSION["usuario"] = $respuesta["usua_login"];
-					$_SESSION["foto"] = $respuesta["usua_foto"];"";
-					$_SESSION["perfil"] = $respuesta["usua_perfil"];
+					if($respuesta["usua_estado"] == "Activo"){
+						$_SESSION["iniciarSesion"] = "ok";
+						$_SESSION["id"] = $respuesta["usua_usuario"];
+						$_SESSION["nombre"] = $respuesta["usua_nombre"];
+						$_SESSION["usuario"] = $respuesta["usua_login"];
+						$_SESSION["foto"] = $respuesta["usua_foto"];"";
+						$_SESSION["perfil"] = $respuesta["usua_perfil"];
 
 					echo '<script>
 
 						window.location = "inicio";
 
 					</script>';
+					}
+					else{
+						echo '<br><div class="alert alert-danger">El usuario aun no esta activado</div>';
+					}
 
 				}else{
 

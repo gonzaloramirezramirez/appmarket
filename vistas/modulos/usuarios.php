@@ -52,9 +52,16 @@
                                 </td>';
                         }
 
+                        echo '<td>'.$value["usua_perfil"].'</td>';
+
+                        if($value["usua_estado"] != "Inactivo"){
+                          echo '<td><button class="btn btn-success btn-xs">'.$value["usua_estado"].'</button></td>';
+                        }
+                        else{
+                          echo '<td><button class="btn btn-danger btn-xs">'.$value["usua_estado"].'</button></td>';
+                        }
+
                         echo '
-                        <td>'.$value["usua_perfil"].'</td>
-                        <td><button class="btn btn-success btn-xs">'.$value["usua_estado"].'</button></td>
                         <td>'.$value["usua_ultimo_login"].'</td>
                         <td>
                           <div class="btn-group">
@@ -195,7 +202,7 @@
             <div class="form-group">
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                <input type="password" class="form-control input-lg" name="editarContrasenia" placeholder="Escriba la nueva Contrasenia" required>
+                <input type="password" class="form-control input-lg" name="editarContrasenia" placeholder="Escriba la nueva Contrasenia">
                 <input type="hidden" id="passwordActual" name="passwordActual">
               </div>
             </div>
