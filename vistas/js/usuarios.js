@@ -30,3 +30,38 @@ $('.nuevaFoto').change(function(){
 		})
 	}
 })
+
+/*=============================================
+Editar Usuario
+=============================================*/
+
+$('.btnEditarUsuario').click(function(){
+	var idUsuario = $(this).attr("idUsuario");
+
+	var datos = new FormData();
+	datos.append("idUsuario",idUsuario);
+
+	$.ajax({
+		url:"ajax/usuarios.ajax.php",
+		method: "POST",
+		data: datos,
+		cache: false,
+		contentType: false,
+		processData: false,
+		dataType: "json",
+		success: function(respuesta){
+			$("#editarNombre").val(respuesta["usua_nombre"]);
+			$("#editarUsuario").val(respuesta["usua_login"]);
+			$("#editarPerfil").html(respuesta["usua_perfil"]);
+			$("#editarEstado").html(respuesta["usua_estado"]);
+			$("#editarPerfil").val(respuesta["usua_perfil"]);
+			$("#editarEstado").val(respuesta["usua_estado"]);
+			$("#passwordActual").val(respuesta["usua_password"]);
+			$("#fotoActual").val(respuesta["usua_foto"]);
+
+			if(respuesta["usua_foto"] != ""){
+				$('.previsualizar').attr("src",respuesta["usua_foto"]);
+			}
+		}
+	});
+})
