@@ -50,6 +50,17 @@
 
 			<li>
 
+				<a href="promociones">
+
+					<i class="fa fa-gift"></i>
+					<span>Promociones</span>
+
+				</a>
+
+			</li>
+
+			<li>
+
 				<a href="clientes">
 
 					<i class="fa fa-users"></i>
